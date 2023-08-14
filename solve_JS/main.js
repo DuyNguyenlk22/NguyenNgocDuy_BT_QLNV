@@ -20,27 +20,8 @@ if (data != null) {
   renderDSNV(dsnv);
 }
 domID("btnThemNV").addEventListener("click", function themNhanVien() {
-  // var _taiKhoan = domID("tknv").value;
-  // var _name = domID("name").value;
-  // var _email = domID("email").value;
-  // var _matkhau = domID("password").value;
-  // var _date = domID("datepicker").value;
-  // var _luong = domID("luongCB").value;
-  // var _chucvu = domID("chucvu").value;
-  // var _giolam = domID("gioLam").value;
-  // var nv = new NhanVien(
-  //   _taiKhoan,
-  //   _name,
-  //   _email,
-  //   _matkhau,
-  //   _date,
-  //   _luong,
-  //   _chucvu,
-  //   _giolam
-  // );
   var nv = layThongTin();
-  // VALIDATION
-  // validate account
+  //START VALIDATION
   var kq =
     kiemTraTaiKhoan("tbTKNV", nv.account, 4, 6, 1, 6) &
     kiemTraRegex("tbTen", nv.name, 5, /^[a-zA-Z]+$/) &
@@ -73,13 +54,14 @@ function deleteNV(id) {
 function suaThongTin(id) {
   var index = timViTri(id, dsnv);
   var nv = dsnv[index];
-  domID("btnThem").click();
+  domID("btnThem").click(); //click vào button thêm nhân viên
   showThongTin(nv);
   domID("tknv").disabled = true;
 }
 domID("btnCapNhat").addEventListener("click", function () {
   var data = layThongTin();
-  // validate account
+  //START VALIDATION
+
   var kq =
     kiemTraTaiKhoan("tbTKNV", data.account, 4, 6, 6, 1) &
     kiemTraRegex("tbTen", data.name, 5, /^[a-zA-Z]+$/) &
@@ -96,6 +78,8 @@ domID("btnCapNhat").addEventListener("click", function () {
     kiemTraGiaTri("tbGiolam", data.giolam, 80, 200, 8);
 
   if (!kq) return;
+  //END VALIDATION
+
   var index = timViTri(data.account, dsnv);
   dsnv[index] = data;
 
@@ -104,11 +88,11 @@ domID("btnCapNhat").addEventListener("click", function () {
   localStorage.setItem("DSNV", jsonData);
 });
 function searchSV() {
-  var input = domID("searchName").value.toUpperCase();
+  var input = domID("searchName").value.toUpperCase(); // biến đổi input thành chữ in hoa.
   var table = domID("tableDanhSach");
   var tr = table.getElementsByTagName("tr");
   for (var i = 0; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[6];
+    var td = tr[i].getElementsByTagName("td")[6]; // lấy thẻ td ở vị trí thứ 6.
 
     var txtvalue = td.innerText;
     if (txtvalue.toUpperCase().indexOf(input) > -1) {
