@@ -86,6 +86,7 @@ domID("btnCapNhat").addEventListener("click", function () {
   renderDSNV(dsnv);
   var jsonData = JSON.stringify(dsnv);
   localStorage.setItem("DSNV", jsonData);
+  location.reload();
 });
 function searchSV() {
   var input = domID("searchName").value.toUpperCase(); // biến đổi input thành chữ in hoa.
